@@ -1,0 +1,33 @@
+html, body, .root {
+    margin: 0;
+    height: 100%;
+    background: rgb(31, 31, 31);
+}
+
+canvas {
+    background: rgb(255, 255, 255);
+    width: 1000px;
+    height: 800px;
+}
+
+main {
+    display: flex;
+
+}
+
+.errorbox {
+    margin: 2vh;
+    border-radius: 2vh;
+    border: solid darkgrey;
+    min-width: 50vh;
+    min-height: 10vh;
+    height: fit-content;
+    width: fit-content;
+}
+
+.errorbox p {
+    color: #c50000;
+    margin: 3vh;
+    font-size: 4vh;
+    word-wrap: break-word;
+}
