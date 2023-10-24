@@ -29,9 +29,9 @@ void main() {
 
         float d = length(uv) * exp(-length(uv0));
 
-        vec3 col = pallete(length(uv0) + i*.4 + STATIC_TIME * .4);
+        vec3 col = pallete(length(uv0) + i*.4 + iTime * .4);
 
-        d = sin(d*8. + STATIC_TIME)/8.;
+        d = sin(d*8. + iTime)/8.;
         d = abs(d);
 
         d = 0.01/d;

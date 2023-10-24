@@ -2,18 +2,23 @@ import {useEffect, useRef, useState} from "react";
 // @ts-ignore
 import vertexShaderSource from './shaders/vertex.glsl'
 // @ts-ignore
-import fragmentShaderSource from './shaders/fragment.glsl'
+import fragmentShaderSource from './shaders/shaders/shaderBook.glsl'
 function App() {
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const errorBoxRef = useRef<HTMLDivElement>(null)
     const errorBoxParagraphRef = useRef<HTMLParagraphElement>(null)
     // const [time,setTime] = useState<number>(0.0)
     
-    const showError = (errorMessage: string) => {
+    const showError = (errorMessage: string | null) => {
         const errorBox = errorBoxRef?.current!
-        const paragraph: HTMLParagraphElement = errorBoxParagraphRef?.current!
-        paragraph.innerText = errorMessage
-        errorBox.appendChild(paragraph)
+        if (errorMessage !== '') {
+            errorBox.style.visibility = 'visible'
+            const paragraph: HTMLParagraphElement = errorBoxParagraphRef?.current!
+            paragraph.innerText = errorMessage!
+            errorBox.appendChild(paragraph)
+            return
+        }
+        errorBox.style.visibility = 'hidden'
     }
     
     const drawTriangle = () => {
@@ -78,6 +83,7 @@ function App() {
              requestAnimationFrame(frame)
         };
         requestAnimationFrame(frame)
+        showError(gl.getProgramInfoLog(program))
     }
     
     useEffect( () => {
